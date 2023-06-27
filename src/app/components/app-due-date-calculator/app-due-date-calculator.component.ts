@@ -79,7 +79,7 @@ export class AppDueDateCalculatorComponent {
       this.hasDirectDeposit!);
       this.nextDueDate = dueDate.toDateString();
 
-    this.clearForm();
+    //this.clearForm();
   }
 
   private clearForm()
