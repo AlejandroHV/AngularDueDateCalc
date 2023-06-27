@@ -13,6 +13,6 @@ export class AppComponent {
     • The calculation is currently being done in a state machine way but it can be implemented as a recursive 
       function for the weekly and holidays part and also going back to the start of the process.
     • Improve the ussage of the Form Control. Dynamic fields, Validations, messages. 
-    
+    •Async calculate the due date. 
  */
 }

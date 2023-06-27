@@ -19,8 +19,6 @@
         <mat-card-content>
             <div class="form_container">
                 
-
-
                     <mat-form-field>
                         <mat-label>Funding day</mat-label>
                         <input matInput [matDatepicker]="fundDayPicker" formControlName="fundDate">
@@ -28,8 +26,6 @@
                         <mat-datepicker-toggle matIconSuffix [for]="fundDayPicker"></mat-datepicker-toggle>
                         <mat-datepicker #fundDayPicker></mat-datepicker>
                     </mat-form-field>
-
-
                     <mat-form-field>
                         <mat-label>Customer Payment Span</mat-label>
                         <mat-select formControlName="paySpan">
@@ -48,7 +44,7 @@
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Holidays</mat-label>
-                        <input matInput #ref [matDatepicker]="holiPicker" (dateChange)="onHolidayInput(ref.value)">
+                        <input matInput #ref [matDatepicker]="holiPicker"  formControlName="holidays" (dateChange)="onHolidayInput(ref.value)">
                         <mat-hint>MM/DD/YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="holiPicker"></mat-datepicker-toggle>
                         <mat-datepicker #holiPicker></mat-datepicker>

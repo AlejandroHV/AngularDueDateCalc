@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import LoanModel from 'src/app/model/LoanModel';
+
 import { PaySpan } from 'src/app/model/enums';
+import LoanModel from 'src/app/model/loanModel';
 
 interface IPaymentSpans {
   value: number;
@@ -46,12 +47,13 @@ export class AppDueDateCalculatorComponent {
     });
   }
 
-  public onHolidayInput(holiday: string) {
+  public onHolidayInput(holiday: string) : void {
     
     this.holidays?.push(new Date(holiday));
   }
 
-  removeHoliday(date:Date){
+
+  public removeHoliday(date:Date) : void{
    
     this.holidays= this.holidays.filter(x=> x !== date);
   }
@@ -69,12 +71,22 @@ export class AppDueDateCalculatorComponent {
 
 
     const loan = new LoanModel();
-    this.nextDueDate = loan.calculate(
+    let dueDate= loan.calculate(
       new Date(this.fundDay!),
       this.holidays!,
       this.paySpan!,
       this.payDay!,
-      this.hasDirectDeposit!).toDateString();
+      this.hasDirectDeposit!);
+      this.nextDueDate = dueDate.toDateString();
+
+    this.clearForm();
+  }
+
+  private clearForm()
+  {
+    this.dueDateForm.reset();
+    this.dueDateForm.clearValidators();
+    this.holidays = [];
   }
 }
 
