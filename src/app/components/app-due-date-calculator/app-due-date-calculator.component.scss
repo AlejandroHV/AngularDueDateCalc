@@ -1,3 +1,22 @@
+
+.calculator-container {
+    display: inline-flex;
+}
+
+.calculator-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+.history-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex: 1;
+}
+
 mat-form-field {
     margin: 0.5rem;
 }
@@ -19,17 +38,17 @@ mat-list {
     margin-right: 1rem;
 }
 
-.result{
+.result {
     left: 20%;
     position: relative;
     margin: 2%;
 }
 
 
-.due-date{
+.due-date {
     position: relative;
     color: chocolate;
     left: 10%;
     font-weight: bold;
-    
+
 }

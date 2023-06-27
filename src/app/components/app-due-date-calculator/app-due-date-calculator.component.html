@@ -1,89 +1,93 @@
-<div class="main">
+<div class="calculator-container">
+   
+    <div class="calculator-section">
+
+        <mat-card>
+            <form [formGroup]="dueDateForm" (ngSubmit)="onSubmit()">
+                <mat-card-header>
+                    <h1>Next Due Date Calculation</h1>
+
+                    <p>
+                        This method determines the first available due date following the funding of a
+                        loan.
+                        The paydate will be at least 10 days in the future from the fundDay. The due date will fall on a
+                        day
+                        that is a pay date based on their pay date model specified by 'paySpan' unless the date must be
+                        adjusted
+                        forward to miss a weekend or backward to miss a holiday
+                        . *Holiday adjustment takes precedence over Weekend.
+                    </p>
+                    <mat-divider></mat-divider>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="form_container">
+
+                        <mat-form-field>
+                            <mat-label>Funding day</mat-label>
+                            <input matInput [matDatepicker]="fundDayPicker" formControlName="fundDate">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="fundDayPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #fundDayPicker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Customer Payment Span</mat-label>
+                            <mat-select formControlName="paySpan">
+                                <mat-option *ngFor="let span of paymentSpans" [value]="span.value">
+                                    {{span.viewValue}}
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Customer Payment Day</mat-label>
+                            <input matInput [matDatepicker]="payDatePicker" formControlName="payDay">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="payDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #payDatePicker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Holidays</mat-label>
+                            <input matInput #ref [matDatepicker]="holiPicker" formControlName="holidays"
+                                (dateChange)="onHolidayInput(ref.value)">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="holiPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #holiPicker></mat-datepicker>
 
 
-    <mat-card>
-        <form [formGroup]="dueDateForm" (ngSubmit)="onSubmit()">
-        <mat-card-header>
-            <h1>Next Due Date Calculation</h1>
-            
-            <p>
-                This method determines the first available due date following the funding of a
-                loan.
-                The paydate will be at least 10 days in the future from the fundDay. The due date will fall on a day
-                that is a pay date based on their pay date model specified by 'paySpan' unless the date must be adjusted
-                forward to miss a weekend or backward to miss a holiday
-                . *Holiday adjustment takes precedence over Weekend.
-            </p>
-            <mat-divider></mat-divider>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="form_container">
-                
-                    <mat-form-field>
-                        <mat-label>Funding day</mat-label>
-                        <input matInput [matDatepicker]="fundDayPicker" formControlName="fundDate">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="fundDayPicker"></mat-datepicker-toggle>
-                        <mat-datepicker #fundDayPicker></mat-datepicker>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Customer Payment Span</mat-label>
-                        <mat-select formControlName="paySpan">
-                            <mat-option *ngFor="let span of paymentSpans" [value]="span.value">
-                                {{span.viewValue}}
-                            </mat-option>
-                        </mat-select>
+                        </mat-form-field>
 
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Customer Payment Day</mat-label>
-                        <input matInput [matDatepicker]="payDatePicker" formControlName="payDay">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="payDatePicker"></mat-datepicker-toggle>
-                        <mat-datepicker #payDatePicker></mat-datepicker>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Holidays</mat-label>
-                        <input matInput #ref [matDatepicker]="holiPicker"  formControlName="holidays" (dateChange)="onHolidayInput(ref.value)">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="holiPicker"></mat-datepicker-toggle>
-                        <mat-datepicker #holiPicker></mat-datepicker>
-
-
-                    </mat-form-field>
-
-                    <mat-checkbox formControlName="hasDirecDeposit" class="example-margin">Has Direct
-                        Deposit</mat-checkbox>
+                        <mat-checkbox formControlName="hasDirecDeposit" class="example-margin">Has Direct
+                            Deposit</mat-checkbox>
 
 
 
-                    <div *ngIf="holidays.length >0">
-                        <h2>Holiday List:</h2>
-                        <mat-list role="list" *ngFor="let item of holidays">
-                            <mat-list-item class="list" role="listitem">{{item.toDateString()}}
-                                <button type="button" (click)="removeHoliday(item)"> <mat-icon aria-hidden="false"
-                                        aria-label="Example home icon" fontIcon="delete"></mat-icon> </button>
-                            </mat-list-item>
+                        <div *ngIf="holidays.length >0">
+                            <h2>Holiday List:</h2>
+                            <mat-list role="list" *ngFor="let item of holidays">
+                                <mat-list-item class="list" role="listitem">{{item.toDateString()}}
+                                    <button type="button" (click)="removeHoliday(item)"> <mat-icon aria-hidden="false"
+                                            aria-label="Example home icon" fontIcon="delete"></mat-icon> </button>
+                                </mat-list-item>
 
-                        </mat-list>
+                            </mat-list>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button class="button" mat-raised-button color="warn">Calculate</button>
+                </mat-card-actions>
+                <mat-card-footer>
+                    <mat-divider></mat-divider>
+                    <div class="result">
+                        <h1>Next due date is: </h1>
+                        <h1 class="due-date">{{nextDueDate}}</h1>
                     </div>
 
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <button class="button" mat-raised-button color="warn">Calculate</button>
-        </mat-card-actions>
-        <mat-card-footer >
-            <mat-divider></mat-divider>
-            <div class="result">
-                <h1>Next due date is: </h1>
-                <h1 class="due-date">{{nextDueDate}}</h1>
-            </div>
-            
-        </mat-card-footer>
-    </form>
-    </mat-card>
+                </mat-card-footer>
+            </form>
+        </mat-card>
 
+    </div>
+    <app-app-calculation-history [data]="calculationHistory"  class="history-container" ></app-app-calculation-history>
 </div>
-
-<router-outlet></router-outlet>

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppDueDateCalculatorComponent } from './components/app-due-date-calculator/app-due-date-calculator.component';
+import { AppCalculationHistoryComponent } from './components/app-calculation-history/app-calculation-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatSelectModule } from '@angular/material/select';
@@ -18,10 +19,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatChipsModule} from '@angular/material/chips';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AppDueDateCalculatorComponent
+    AppDueDateCalculatorComponent,
+    AppCalculationHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatListModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatChipsModule
   ],
   providers: [
 
