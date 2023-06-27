@@ -1,0 +1,26 @@
+
+
+header {
+    background: #c25e1c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    box-shadow: 2px 3px 2px #f1f1f1;
+    top: 0;
+    font-weight: 900;
+    font-size: x-large;
+    position: sticky;
+    
+}
+
+main {
+    margin-left: 4%;
+    margin-right: 4%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.9rem;
+    height: 100%;
+}

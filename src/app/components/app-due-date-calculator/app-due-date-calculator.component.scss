@@ -1,0 +1,35 @@
+mat-form-field {
+    margin: 0.5rem;
+}
+
+mat-card-header {
+    display: block;
+}
+
+mat-list {
+    border-radius: 0.5rem;
+    border-color: rgb(112, 112, 112);
+    //border-style: solid;
+}
+
+.button {
+    text-align: right;
+    position: absolute;
+    right: 1%;
+    margin-right: 1rem;
+}
+
+.result{
+    left: 20%;
+    position: relative;
+    margin: 2%;
+}
+
+
+.due-date{
+    position: relative;
+    color: chocolate;
+    left: 10%;
+    font-weight: bold;
+    
+}
